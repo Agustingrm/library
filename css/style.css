@@ -1,0 +1,12 @@
+#storage {
+    display: grid;
+    grid-template-columns: repeat(3,200px);
+    align-items: center;
+    justify-items: center;
+}
+
+.shelf {
+    background-color: red;
+    width: 190px;
+    height: 190px;
+}
