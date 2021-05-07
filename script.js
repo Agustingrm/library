@@ -1,5 +1,18 @@
 let myLibrary = [];
 
+function orderArrayAlphabetically(){
+    function compare( a, b ) {
+        if ( a.name < b.name){
+            return -1;
+        }
+        if ( a.name > b.name ){
+            return 1;
+        }
+        return 0;
+    }
+return myLibrary = myLibrary.sort(compare);
+}
+
 function Book(name,author,pages,read) {
         this.name = name;
         this.author = author;
@@ -21,6 +34,7 @@ function displayInWeb(){
     while (deleteEverything[0]){
         deleteEverything[0].parentNode.removeChild(deleteEverything[0]);
     }
+    orderArrayAlphabetically();
 
     for (let i=0; i<myLibrary.length;i++){
 
@@ -33,27 +47,65 @@ function displayInWeb(){
         aName.classList.add('name');
         aBook.appendChild(aName)
         //Display name inside book box
-        var name = document.getElementsByClassName('name')[i];
-        name.innerHTML = 'Name: '+myLibrary[i]['name'];
+        let name = document.getElementsByClassName('name')[i];
+        name.innerHTML = '<b>Name:</b> '+myLibrary[i]['name'];
         //Display author inside book box
         const Author = document.createElement('p')
         Author.classList.add('author');
         aBook.appendChild(Author)
-        var author = document.getElementsByClassName('author')[i];
-        author.innerHTML = 'Author: '+myLibrary[i]['author'];
+        let author = document.getElementsByClassName('author')[i];
+        author.innerHTML = '<b>Author:</b> '+myLibrary[i]['author'];
         //Display pages inside book box
         const Pages = document.createElement('p')
         Pages.classList.add('pages');
         aBook.appendChild(Pages)
-        var pages = document.getElementsByClassName('pages')[i];
-        pages.innerHTML = 'Pages: '+myLibrary[i]['pages'];
+        let pages = document.getElementsByClassName('pages')[i];
+        pages.innerHTML = '<b>Pages:</b> '+myLibrary[i]['pages'];
         //Display if read inside book box
         const Read = document.createElement('p')
         Read.classList.add('read');
         aBook.appendChild(Read)
-        var read = document.getElementsByClassName('read')[i];
-        read.innerHTML = 'Read: '+myLibrary[i]['read'];
+
+        let read = document.getElementsByClassName('read')[i];
+        read.innerHTML = '<b>Read: </b>'
+        //Display a checkbox if read is 'yes'
+        const checkbox = document.createElement('input')
+        checkbox.setAttribute("type","checkbox")
+        if (myLibrary[i]['read'].toLowerCase() == 'yes'){
+            checkbox.checked = true;
+        }
+        Read.appendChild(checkbox)
+         //Make a rename button
+         const renameBook = document.createElement('button')
+         renameBook.classList.add('renameButton');
+         aBook.appendChild(renameBook)
+ 
+         let renameButton = document.getElementsByClassName('renameButton')[i];
+         renameButton.innerHTML = '<b>RENAME</b>'
+        //Make a delete button
+        const deleteBook = document.createElement('button')
+        deleteBook.classList.add('deleteButton');
+        aBook.appendChild(deleteBook)
+
+        let deleteButton = document.getElementsByClassName('deleteButton')[i];
+        deleteButton.innerHTML = '<b>DELETE BOOK</b>'
+        deleteButton.addEventListener('click',function(){
+            console.log(i);
+            if (window.confirm('Your data will be lost, do you want to proceed?')){
+                myLibrary.splice(i,1);}
+            displayInWeb();
+        })
+        ;
+        
+
     }
-    storage.style.gridTemplateRows = ('repeat('+Math.ceil(myLibrary.length/3)+',200px)')
+    storage.style.gridTemplateRows = ('repeat('+Math.ceil(myLibrary.length/6)+',200px)')
 }
 
+const deleteEntireBook = document.getElementsByClassName('deleteButton');
+
+for (let i=0;i<deleteEntireBook.length;i++){
+    deleteEntireBook[i].addEventListener('click',function(){
+        console.log('a');
+    });
+}

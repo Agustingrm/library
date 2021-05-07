@@ -1,12 +1,72 @@
+body {
+    margin: 0px;
+    font-family: 'Karla', sans-serif;
+    background-color: #e3d18a;
+}
+
+p {
+    margin: 10px;
+}
+
 #storage {
     display: grid;
-    grid-template-columns: repeat(3,200px);
+    grid-template-columns: repeat(6,200px);
     align-items: center;
     justify-items: center;
 }
 
 .shelf {
-    background-color: red;
+    background-color: #bd9354;
     width: 190px;
     height: 190px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+header {
+    height: 150px;
+    background-color: #9e7540;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0px;
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Zilla Slab', serif;
+}
+
+#description {
+    text-align: center;
+    font-size: 25px;
+    margin: 10px;
+}
+
+#storage {
+    margin: auto;
+    width: 1200px;
+}
+
+#addNewBook {
+    display: block;
+    margin: 20px auto;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Karla', sans-serif;
+}
+
+.deleteButton, .renameButton {
+    display: block;
+    margin: auto;
+    width: 120px;
+}
+
+.deleteButton {
+    background-color: rgba(197, 4, 4, 0.5);
+}
+
+.renameButton {
+    background-color: green;
 }
