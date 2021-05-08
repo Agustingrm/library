@@ -4,6 +4,7 @@
      <meta charset='utf-8'>
      <title>My Library</title>
      <link rel='stylesheet' href='css/style.css'>
+     <meta name='viewport' content='width=device-width, initial-scale=1'>
      <link rel="preconnect" href="https://fonts.gstatic.com">
      <link href="https://fonts.googleapis.com/css2?family=Karla:wght@500&family=Zilla+Slab:wght@500&display=swap" rel="stylesheet">
  </head>
@@ -14,6 +15,27 @@
          <p id="description">Here you can keep track of all the books that you have read</p>
      </header>
      <button id="addNewBook">Add New Book</button>
+     <div id="modalBox">
+         <form id="modalContent">
+             <label for="name">Name of the Book:<br></label>
+             <input type="text" id='nameOfTheBook'><br>
+             <p id='missingName'>&nbsp</p>
+             <label for="author">Name of the Author:<br></label>
+             <input type="text" id='authorOfTheBook'><br>
+             <p id='missingAuthor'>&nbsp</p>
+             <label for="pages">Amount of Pages:<br></label>
+             <input type="number" id='pagesOfTheBook' value=0><br>
+             <label for="read">Have you read the book?<br></label> 
+             <div id='radios'>     
+             <input type="radio" name="read" id='theBookIsRead'><span class='radioText'> Yes</span>
+             <input type="radio" name="read" id='theBookIsNotRead' checked><span class='radioText'> No</span>
+             </div>
+             <div id="formButtons">
+             <input type="button" value='Add Book' id='addButton'>
+             <input type="button" value='Close' id='closeModalBox'>
+             </div>
+             </form>             
+     </div>
      <div id='storage'>
      </div>
 

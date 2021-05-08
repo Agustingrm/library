@@ -1,5 +1,20 @@
 let myLibrary = [];
 
+getLocalStorage();
+
+function saveInLocalStorage(){
+    localStorage.setItem('Library',JSON.stringify(myLibrary));
+}
+
+function getLocalStorage(){
+    if(localStorage.getItem('Library') == false){
+        return
+    }
+    else {
+        myLibrary = JSON.parse(localStorage.getItem('Library'));
+    }
+}
+
 function orderArrayAlphabetically(){
     function compare( a, b ) {
         if ( a.name < b.name){
@@ -19,12 +34,6 @@ function Book(name,author,pages,read) {
         this.pages = pages;
         this.read = read;
     }
-
-
-function addBookToTheLibrary(name,author,pages,read) {
-    let newBook = new Book(name,author,pages,read);
-    myLibrary.push(newBook);
-}
 
 const storage = document.getElementById('storage');
 
@@ -75,13 +84,6 @@ function displayInWeb(){
             checkbox.checked = true;
         }
         Read.appendChild(checkbox)
-         //Make a rename button
-         const renameBook = document.createElement('button')
-         renameBook.classList.add('renameButton');
-         aBook.appendChild(renameBook)
- 
-         let renameButton = document.getElementsByClassName('renameButton')[i];
-         renameButton.innerHTML = '<b>RENAME</b>'
         //Make a delete button
         const deleteBook = document.createElement('button')
         deleteBook.classList.add('deleteButton');
@@ -94,12 +96,13 @@ function displayInWeb(){
             if (window.confirm('Your data will be lost, do you want to proceed?')){
                 myLibrary.splice(i,1);}
             displayInWeb();
-        })
-        ;
+        });
+        
         
 
     }
-    storage.style.gridTemplateRows = ('repeat('+Math.ceil(myLibrary.length/6)+',200px)')
+    saveInLocalStorage()
+    
 }
 
 const deleteEntireBook = document.getElementsByClassName('deleteButton');
@@ -109,3 +112,54 @@ for (let i=0;i<deleteEntireBook.length;i++){
         console.log('a');
     });
 }
+
+
+const visibilityOfTheModalBox = document.getElementById('modalBox')
+
+const newBook = document.getElementById('addNewBook')
+
+newBook.addEventListener('click',() =>{
+    visibilityOfTheModalBox.style.display = 'inline'
+})
+
+const addBook = document.getElementById('addButton')
+addBook.addEventListener('click',()=> addBookToTheLibrary())
+
+function addBookToTheLibrary() {
+    let name = document.getElementById('nameOfTheBook').value
+    let author = document.getElementById('authorOfTheBook').value
+    let pages = document.getElementById('pagesOfTheBook').value
+    let read = '';
+    if (document.getElementById('theBookIsRead').checked){
+        read = 'yes'
+    }
+    else {
+        read = 'no'
+    }
+    let newBook = new Book(name,author,pages,read);
+    if (document.getElementById('nameOfTheBook').value == ''){
+        document.getElementById('missingName').innerHTML = 'You can not leave the Name empty'
+        return
+    }
+    if (document.getElementById('authorOfTheBook').value == ''){
+        document.getElementById('missingAuthor').innerHTML = 'You can not leave the Author empty'
+        return
+    }
+    myLibrary.push(newBook);
+    displayInWeb();
+    visibilityOfTheModalBox.style.display = 'none'
+    document.getElementById('nameOfTheBook').value = '';
+    document.getElementById('authorOfTheBook').value = '';
+    document.getElementById('pagesOfTheBook').value = '';
+    document.getElementById('theBookIsNotRead').checked = true;
+    document.getElementById('missingName').innerHTML = '&nbsp'
+    document.getElementById('missingAuthor').innerHTML = '&nbsp'
+}
+//Close the pop up box
+const closeModalBox = document.getElementById('closeModalBox')
+
+closeModalBox.addEventListener('click', () => visibilityOfTheModalBox.style.display = 'none');
+
+//If there is anything on Local Storage, it will display it on start
+displayInWeb()
+
