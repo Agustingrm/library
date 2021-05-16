@@ -22,10 +22,19 @@ p {
     background-color: #3574c7;
     width: 190px;
     height: 190px;
-    padding: 10px 20px;
+    padding: 0px 10px;
     box-sizing: border-box;
     box-shadow: 6px 6px 6px rgb(22, 22, 22);
 }
+
+.name, .author, .pages , .read{
+    margin: 5px;
+}
+
+.name, .author{
+    height: 38px;
+}
+
 
 header {
     height: 150px;
@@ -58,7 +67,7 @@ h1 {
 
 .deleteButton {
     display: block;
-    margin: 20px auto;
+    margin: 5px auto;
     width: 120px;
     height: 25px;
     background-color: rgb(180, 0, 0);
@@ -145,6 +154,7 @@ h1 {
 #pagesOfTheBook{
     margin-bottom: 20px;
 }
+
 
 @media all and (max-width: 1220px) {
     #storage {

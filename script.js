@@ -141,10 +141,19 @@ function addBookToTheLibrary() {
         document.getElementById('missingName').innerHTML = 'You can not leave the Name empty'
         return
     }
+    if (document.getElementById('nameOfTheBook').value.length > 18){
+        document.getElementById('missingName').innerHTML = 'Name must be shorter than 18 letters'
+        return
+    }
     if (document.getElementById('authorOfTheBook').value == ''){
         document.getElementById('missingAuthor').innerHTML = 'You can not leave the Author empty'
         return
     }
+    if (document.getElementById('authorOfTheBook').value.length > 18){
+        document.getElementById('missingName').innerHTML = 'Author must be shorter than 18 letters'
+        return
+    }
+
     myLibrary.push(newBook);
     displayInWeb();
     visibilityOfTheModalBox.style.display = 'none'
